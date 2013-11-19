@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row text-center">
+    <h1>Find Other DREAMers</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-7">
+      <input type="search" class="form-control" placeholder="Search" ng-model="nameQuery"/>
+    </div>
+    <div class="col-xs-2">
+      <select class="form-control">
+        <option>Interest</option>
+        <option>Location</option>
+        <option>Nationality</option>
+        <option>Name</option>
+      </select>
+    </div>
+    <div class="col-xs-3">
+      <button type="submit" class="btn btn-default" ng-disabled="busy">Search</button>
+    </div>
+  </div>
+  <hr class="featurette-divider">
+  <div infinite-scroll='loadUsers()' infinite-scroll-distance='0'>
+    <div ng-repeat="user in users">
+      <div class="row">
+        <div class="col-xs-5">
+          <img class="featurette-image img-responsive" src="http://placehold.it/500x500"  alt="Generic placeholder image">
+        </div>
+        <div class="col-xs-7">
+          <h2 class="featurette-heading">Dreamer McDreamer</h2>
+          <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+      </div>
+      <hr class="featurette-divider">
+    </div>
+  </div>
+</div>

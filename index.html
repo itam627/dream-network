@@ -1,0 +1,119 @@
+<html lang="en" ng-app="dreamnetwork">
+<head>
+  <meta charset="utf-8">
+  <title>Dream Network</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="http://www.placehold.it/25x25">
+
+  <!-- Jquery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+  <!-- Bootstrap -->
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Angular -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
+  <!-- Custom Angular Files -->
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/infiniteScroll.js"></script>
+
+  <!-- Parse -->
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+</head>
+
+<body>
+  <div id="fb-root"></div>
+  <script>
+    Parse.initialize("DOcU6w7jSSqgmBN906dvQTPnxyzfPV8g5zC4XL2J", "06W3gtwjZ27Wan3e6ywx4VPpYFMlyhV5ttXiWums");
+
+    window.fbAsyncInit = function() {
+      // init the FB JS SDK
+      Parse.FacebookUtils.init({
+        appId      : '215146035331282', // Facebook App ID
+        cookie     : true, // enable cookies to allow Parse to access the session
+        xfbml      : true  // parse XFBML
+      });
+    };
+
+    // Load the SDK asynchronously
+    (function(){
+       // If we've already installed the SDK, we're done
+       if (document.getElementById('facebook-jssdk')) {return;}
+
+       // Get the first script element, which we'll use to find the parent node
+       var firstScriptElement = document.getElementsByTagName('script')[0];
+
+       // Create a new script element and set its id
+       var facebookJS = document.createElement('script');
+       facebookJS.id = 'facebook-jssdk';
+
+       // Set the new script's source to the source of the Facebook JS SDK
+       facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+       // Insert the Facebook JS SDK into the DOM
+       firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+     }());
+  </script>
+
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Dream Network</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li ng-if="userLoggedIn"><a href="#profile">Profile</a></li>
+          <li ng-if="userLoggedIn"><a href="#search">Find DREAMers</a></li>
+          <li><a href="#information">Information</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+        <ng-switch on="userLoggedIn">
+          <ul ng-switch-when="true" class="navbar-right navbar-form">
+            <a class="btn" ng-controller="UserCtrl" ng-click="logout()">Log Out</a>
+          </ul>
+          <ul ng-switch-default="false" class="navbar-right navbar-form">
+            <a class="btn" href="#/login">Login</a>
+            <a class="btn" href="#/signup">Sign Up</a>
+          </ul>
+        </ng-switch>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+  <div ng-view id="variable"></div>
+
+  <footer>
+<!--    <div class="container">
+      <p class="pull-left">
+        <a href="#/about">About</a>
+        &middot;
+        <a href="#/team">Team</a>
+        &middot;
+        <a href="#/faq">FAQ</a>
+        &middot;
+        <a href="#/contact">Contact</a>
+        &middot;
+        <a href="#">Facebook</a>
+      </p>
+      <p class="pull-right">Dream Network</p>
+    </div> -->
+  </footer>
+
+</body>
+</html>
