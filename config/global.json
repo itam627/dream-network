@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Dream Network": {
+            "applicationId": "DOcU6w7jSSqgmBN906dvQTPnxyzfPV8g5zC4XL2J", 
+            "masterKey": "aNAqhmv6iyKvcAOXRzSz3HaXnClBuLTqpINbY6wp"
+        }, 
+        "_default": {
+            "link": "Dream Network"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.13"
+    }
+}
