@@ -3,7 +3,7 @@ angular.module('dreamnetwork', ['ngResource', 'ngRoute', 'infinite-scroll'])
   .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider.
       when('/home', {templateUrl: 'html/home.html', controller: HomeCtrl}).
-      when('/profile', {templateUrl: 'html/profile.html', controller: ProfileCtrl}).
+      when('/profile/:userId', {templateUrl: 'html/profile.html', controller: ProfileCtrl}).
       when('/search', {templateUrl: 'html/search.html', controller: SearchCtrl}).
       when('/information', {templateUrl: 'html/information.html', controller: InformationCtrl}).
       when('/about', {templateUrl: 'html/about.html', controller: AboutCtrl}).
@@ -15,6 +15,8 @@ angular.module('dreamnetwork', ['ngResource', 'ngRoute', 'infinite-scroll'])
     var currentUser = Parse.User.current();
     if (currentUser) {
       $rootScope.userLoggedIn = true;
+      $rootScope.userId = currentUser.id;
+      userSrv.currentUser = currentUser;
     } else {
       $rootScope.userLoggedIn = false;
     }

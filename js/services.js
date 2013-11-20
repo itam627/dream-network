@@ -11,6 +11,7 @@ angular.module('dreamnetwork')
           success: function(user) {
             $rootScope.$apply(function () {
               $rootScope.userLoggedIn = true;
+              service.currentUser = user;
               $location.path('/profile');
             });
           },
@@ -24,6 +25,7 @@ angular.module('dreamnetwork')
       Parse.User.logOut();
       FB.logout();
       $rootScope.userLoggedIn = false;
+      service = {};
       $location.path('/home');
     }
     return service;
