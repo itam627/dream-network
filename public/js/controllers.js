@@ -31,12 +31,26 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
 }
 
 function SearchCtrl($scope, $routeParams) {
-  $scope.users = [1, 2, 3, 4, 5, 6, 7, 8];
+  $scope.users = [];
 
   $scope.loadUsers = function() {
     var last = $scope.users[$scope.users.length - 1];
     $scope.users.push(last + 1);
   };
+
+  $scope.searchUser = function() {
+    var query = new Parse.Query(Parse.User);
+    var queryResult = query.equalTo($scope.choices, $scope.query).find();
+    queryResult.then(function(results) {
+      alert("returned");
+      $scope.users = [];
+      for (var result in results) {
+        $scope.$apply(function() {
+          $scope.users.push(result);
+        });
+      }
+    });
+  }
 }
 
 function InformationCtrl($scope, $routeParams) {
