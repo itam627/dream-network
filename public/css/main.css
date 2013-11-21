@@ -101,9 +101,25 @@ body {
   margin-left: 5px;
 }
 
+a {
+    color: #FFF6E5;
+}
+
+.btn:hover, .btn:focus {
+    color: #2185C5;
+    text-decoration: none;
+}
+
 .navbar-nav>li>a {
     padding-top: 24.5px;
     padding-bottom: 16.5px;
+    color: #FFF6E5;
+}
+
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: rgba(0, 0, 0, 0);
+    color: #2185C5;
 }
 
 .navbar-brand {
@@ -113,4 +129,54 @@ body {
 .navbar .btn {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+/*#3E454C Charcoal 
+#2185C5 Bright Blue 
+#7ECEFD Baby Blue 
+#FFF6E5 Almost White 
+#FF7F66 Red*/
+.btn-default {
+    background-color: #2185C5;
+    border-color: #95A5A6;
+    color: #FFF6E5;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    background-color: #FF7F66;
+    border-color: #FF7F66;
+    color: #FFF;
+}
+
+.form-control:focus {
+    border-color: #FF7F66;
+}
+
+.container .row:nth-child(2){
+	padding: 10px 20px;
+	background-color: #C2DAEA;
+	border-radius : 10px;
+}
+.col-xs-2 .form-control{
+	border-radius: 2px 0px 0px 2px;
+	background-color: transparent;
+	border : none;
+}
+.col-xs-2{
+	padding-right: 0px;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #b5b5b5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#b5b5b5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#b5b5b5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#b5b5b5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#b5b5b5 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#b5b5b5 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b5b5b5',GradientType=0 ); /* IE6-9 */
+}
+
+.col-xs-7 .form-control{
+	border-radius: 0px 2px 2px 0px;
+}
+
+.col-xs-7{
+	padding-left: 0px;
 }
