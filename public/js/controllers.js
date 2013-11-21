@@ -10,6 +10,7 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
   query.get($routeParams.userId).then(function(user) {
     $scope.$apply(function () {
       $scope.user = {
+        name: user.get('name'),
         major: user.get('major'),
         fbUsername : user.get('fb_username'),
         description: user.get('description'),
