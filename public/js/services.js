@@ -11,7 +11,9 @@ angular.module('dreamnetwork')
         $location.path('profile/' + currentUser.id);
       } else {
 
-        Parse.FacebookUtils.logIn("user_location,user_interests,user_education_history,user_work_history,user_about_me,user_birthday", {
+        Parse.FacebookUtils.logIn("user_location,user_hometown, \
+                                  user_interests,user_education_history, \
+                                  user_about_me,user_birthday", {
           success: function(user) {
            $rootScope.$apply(function () {
               $rootScope.userLoggedIn = true;
@@ -24,7 +26,10 @@ angular.module('dreamnetwork')
                  FB.api({
                    method: 'fql.multiquery',
                    queries: {
-                       'query1': 'SELECT name, sex, birthday, current_location, work, education, about_me, interests, username, pic_cover FROM user WHERE uid = me()',
+                       'query1': "SELECT name, sex, birthday, current_location, \
+                          education, about_me, interests, username, \
+                          pic_cover, hometown_location, languages \
+                          FROM user WHERE uid = me()",
                        'query2': 'SELECT url FROM profile WHERE id = me()'
                     }
                  }, function(response) {
@@ -36,7 +41,6 @@ angular.module('dreamnetwork')
                    user.set('gender', userResponse.sex);
                    user.set("age", getAge(userResponse.birthday));
                    user.set('state', userResponse.current_location.state);
-                   user.set('profession', getFBProfession(userResponse.work));
                    user.set('education', getFBEducation(userResponse.education));
                    user.set('major', getFBMajors(userResponse.education));
                    user.set('interests', userResponse.interests);
@@ -46,6 +50,8 @@ angular.module('dreamnetwork')
                    user.set('college', getFBEducation(userResponse.education, "College"));
                    user.set('pic_cover', userResponse.pic_cover);
                    user.set('fb_url', profileResponse.url);
+                   user.set('languages', getFBLanguages(profileResponse.languages));
+                   user.set('home_country', getFBHomeCountry(profileResponse.hometown_location));
 
                    user.save(null, {
                      success: function(data) {
