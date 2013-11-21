@@ -23,7 +23,7 @@ angular.module('dreamnetwork')
                 if (!user.get('first_time')) {
                  FB.api({
                    method: 'fql.query',
-                   query: 'SELECT name, sex, birthday, current_location, work, education, about_me, interests FROM user WHERE uid = me()'
+                   query: 'SELECT name, sex, birthday, current_location, work, education, about_me, interests, username FROM user WHERE uid = me()'
                     }, function(response) {
                    response = response[0];
                    user.set("first_time", true);
