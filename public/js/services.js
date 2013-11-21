@@ -10,7 +10,8 @@ angular.module('dreamnetwork')
         service.currentUser = currentUser;
         $location.path('/profile');
       } else {
-        Parse.FacebookUtils.logIn("user_location,user_interests,user_education_history,user_work_history,user_about_me", {
+
+        Parse.FacebookUtils.logIn("user_location,user_interests,user_education_history,user_work_history,user_about_me,user_birthday", {
           success: function(user) {
             $rootScope.$apply(function () {
               $rootScope.userLoggedIn = true;
@@ -65,3 +66,15 @@ angular.module('dreamnetwork')
     return service;
   })
 ;
+
+
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
