@@ -87,3 +87,16 @@ body {
   max-width: none !important;
   width: 970px;
 }
+
+.pencil-edit {
+  margin-bottom:12px;
+  cursor: pointer;
+}
+
+.save-button {
+  margin-left: 5px;
+}
+
+.cancel-button {
+  margin-left: 5px;
+}

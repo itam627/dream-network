@@ -3,12 +3,12 @@ angular.module('dreamnetwork')
     var editorTemplate = '<div class="click-to-edit-text-field">' +
         '<div ng-hide="view.editorEnabled">' +
             '{{value}} ' +
-            '<button class="btn btn-default" ng-show="editable" ng-click="enableEditor()">Edit</a>' +
+            '<a ng-show="editable" ng-click="enableEditor()"><img class="svg pencil-edit" src="images/edit-pencil.svg" width="10" height="10" /></a>' +
         '</div>' +
         '<div ng-show="view.editorEnabled">' +
             '<input type="text" ng-model="view.editableValue">' +
-            '<button class="btn btn-default" ng-click="save()">Save</a>' +
-            '<button class="btn btn-default" ng-click="disableEditor()">Cancel</a>' +
+            '<button class="btn btn-default save-button" ng-click="save()">Save</a>' +
+            '<button class="btn btn-default cancel-button" ng-click="disableEditor()">Cancel</a>' +
         '</div>' +
     '</div>';
 
