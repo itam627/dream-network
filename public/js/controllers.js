@@ -37,6 +37,7 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
 function SearchCtrl($scope, $routeParams) {
   $scope.users = [];
   $scope.displayingResults=false;
+  $scope.choices = "interests";
 
   $scope.searchUser = function() {
     var query = new Parse.Query(Parse.User);
