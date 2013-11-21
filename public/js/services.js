@@ -23,7 +23,7 @@ angular.module('dreamnetwork')
                 if (!user.get('first_time')) {
                  FB.api({
                    method: 'fql.query',
-                   query: 'SELECT name, sex, birthday, current_location, work, education, about_me, interests, username FROM user WHERE uid = me()'
+                   query: 'SELECT name, sex, birthday, current_location, work, education, about_me, interests, username, pic_cover FROM user WHERE uid = me()'
                     }, function(response) {
                    response = response[0];
                    user.set("first_time", true);
@@ -32,12 +32,14 @@ angular.module('dreamnetwork')
                    user.set("age", getAge(response.birthday));
                    user.set('state', response.current_location.state);
                    user.set('profession', getFBProfession(response.work));
-                   user.set('education', getFBEducation(response.education));
+                   user.set('high_school', getFBEducation(response.education, "High School"));
+                   user.set('college', getFBEducation(response.education, "College"));
                    user.set('major', getFBMajors(response.education));
                    user.set('fb_url', response.link);
                    user.set('interests', response.interests);
                    user.set('description', response.about_me);
                    user.set('fb_username', response.username);
+                   user.set('pic_cover', response.pic_cover);
 
                    user.save(null, {
                      success: function(data) {

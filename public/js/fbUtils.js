@@ -8,10 +8,12 @@ var getFBProfession = function(work_history) {
   return professions.length ? professions.join(', ') : undefined;
 }
 
-var getFBEducation = function(education_history) {
+ var getFBEducation = function(education_history, type) {
   var schools = [];
   education_history.forEach(function(education_event) {
-    schools.push(education_event['school']['name']);
+    if (education_event['type'] == type) {
+     schools.push(education_event['school']['name']);
+    }
    });
   return schools.length ? schools.join(', ') : undefined;
 }

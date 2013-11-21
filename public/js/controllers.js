@@ -14,7 +14,8 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
         major: user.get('major'),
         fbUsername : user.get('fb_username'),
         description: user.get('description'),
-        education: user.get('education'),
+        high_school: user.get('high_school'),
+        college: user.get('college'),
         profession: user.get('profession'),
         nationality: user.get('nationality'),
         interests: user.get('interests'),
@@ -27,7 +28,8 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
       $scope.$watch('user', function(newValue, oldValue){
         userSrv.currentUser.set('major', newValue.major);
         userSrv.currentUser.set('description', newValue.description);
-        userSrv.currentUser.set('education', newValue.education);
+        userSrv.currentUser.set('high_school', newValue.high_school);
+        userSrv.currentUser.set('college', newValue.college);
         userSrv.currentUser.set('profession', newValue.profession);
         userSrv.currentUser.set('nationality', newValue.nationality);
         userSrv.currentUser.set('interests', newValue.interests);
