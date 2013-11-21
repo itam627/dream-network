@@ -10,12 +10,30 @@ angular.module('dreamnetwork')
         service.currentUser = currentUser;
         $location.path('/profile');
       } else {
-        Parse.FacebookUtils.logIn(null, {
+        Parse.FacebookUtils.logIn("user_location,user_interests,user_education_history,user_work_history", {
           success: function(user) {
             $rootScope.$apply(function () {
               $rootScope.userLoggedIn = true;
               $rootScope.userId = user.id;
               service.currentUser = user;
+
+	      var query = new Parse.Query(Parse.User);
+	      query.get(user.id).then(function(user) {
+                if (!user.get('first_time')) {
+                 FB.api('/me', function(response) {
+                   user.set("first_time", true);
+                   user.set('name', response.name);
+
+                   user.save(null, {
+                     success: function(data) {
+                     },
+                      error: function(data, error) {
+                      console.log(error);
+                     }
+                    });
+                  });
+                }
+               });
               $location.path('/profile');
             });
           },
