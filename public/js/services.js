@@ -8,12 +8,12 @@ angular.module('dreamnetwork')
         $rootScope.userLoggedIn = true;
         $rootScope.userId = currentUser.id;
         service.currentUser = currentUser;
-        $location.path('/profile');
+        $location.path('profile/' + currentUser.id);
       } else {
 
         Parse.FacebookUtils.logIn("user_location,user_interests,user_education_history,user_work_history,user_about_me,user_birthday", {
           success: function(user) {
-            $rootScope.$apply(function () {
+           $rootScope.$apply(function () {
               $rootScope.userLoggedIn = true;
               $rootScope.userId = user.id;
               service.currentUser = user;
@@ -41,14 +41,19 @@ angular.module('dreamnetwork')
 
                    user.save(null, {
                      success: function(data) {
-                      $location.path('/profile');
+                      $rootScope.$apply(function() {
+                        $location.path('profile/' + $rootScope.userId);
+                       });
                      },
                       error: function(data, error) {
                       console.log(error);
                      }
                     });
-                   $location.path('/profile');
                   });
+                } else {
+                  $rootScope.$apply(function() {
+                    $location.path('profile/' + $rootScope.userId);
+                   });
                 }
                });
             });
