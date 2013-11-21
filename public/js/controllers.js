@@ -14,7 +14,8 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
         description: user.get('description'),
         education: user.get('education'),
         profession: user.get('profession'),
-        nationality: user.get('nationality')
+        nationality: user.get('nationality'),
+        name: user.get('name')
       }
 
       //setup watches
