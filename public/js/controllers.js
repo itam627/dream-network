@@ -11,6 +11,7 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
     $scope.$apply(function () {
       $scope.user = {
         major: user.get('major'),
+        fbUsername : user.get('fbUsername'),
         description: user.get('description'),
         education: user.get('education'),
         profession: user.get('profession'),
