@@ -33,6 +33,7 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
 
 function SearchCtrl($scope, $routeParams) {
   $scope.users = [];
+  $scope.displayingResults=false;
 
   $scope.searchUser = function() {
     var query = new Parse.Query(Parse.User);
@@ -41,6 +42,7 @@ function SearchCtrl($scope, $routeParams) {
     queryResult.then(function(results) {
       $scope.$apply(function(){
         $scope.users = [];
+        $scope.displayingResults = true;
         results.forEach(function(object) {
           $scope.users.push({
             id : object.id,
