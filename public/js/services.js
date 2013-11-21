@@ -23,6 +23,10 @@ angular.module('dreamnetwork')
                  FB.api('/me', function(response) {
                    user.set("first_time", true);
                    user.set('name', response.name);
+                   user.set('profession', getFBProfession(response.work));
+                   user.set('education', getFBEducation(response.education));
+                   user.set('major', getFBMajors(response.education));
+                   user.set('fb_url', response.link);
 
                    user.save(null, {
                      success: function(data) {
@@ -32,6 +36,7 @@ angular.module('dreamnetwork')
                       console.log(error);
                      }
                     });
+                   $location.path('/profile');
                   });
                 }
                });
@@ -53,4 +58,3 @@ angular.module('dreamnetwork')
     return service;
   })
 ;
-
