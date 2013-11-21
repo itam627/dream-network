@@ -10,7 +10,7 @@ angular.module('dreamnetwork')
         service.currentUser = currentUser;
         $location.path('/profile');
       } else {
-        Parse.FacebookUtils.logIn("user_location,user_interests,user_education_history,user_work_history", {
+        Parse.FacebookUtils.logIn("user_location,user_interests,user_education_history,user_work_history,user_about_me", {
           success: function(user) {
             $rootScope.$apply(function () {
               $rootScope.userLoggedIn = true;
@@ -22,7 +22,7 @@ angular.module('dreamnetwork')
                 if (!user.get('first_time')) {
                  FB.api({
                    method: 'fql.query',
-                    query: 'SELECT name, current_location, work, education, interests FROM user WHERE uid = me()'
+                    query: 'SELECT name, current_location, work, education, about_me, interests FROM user WHERE uid = me()'
                     }, function(response) {
                    response = response[0];
                    user.set("first_time", true);
@@ -32,6 +32,7 @@ angular.module('dreamnetwork')
                    user.set('major', getFBMajors(response.education));
                    user.set('fb_url', response.link);
                    user.set('interests', response.interests);
+                   user.set('description', response.about_me);
 
                    user.save(null, {
                      success: function(data) {
