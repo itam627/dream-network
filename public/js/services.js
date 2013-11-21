@@ -26,6 +26,7 @@ angular.module('dreamnetwork')
 
                    user.save(null, {
                      success: function(data) {
+                      $location.path('/profile');
                      },
                       error: function(data, error) {
                       console.log(error);
@@ -34,7 +35,6 @@ angular.module('dreamnetwork')
                   });
                 }
                });
-              $location.path('/profile');
             });
           },
           error: function(user, error) {
