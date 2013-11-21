@@ -11,7 +11,7 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
     $scope.$apply(function () {
       $scope.user = {
         major: user.get('major'),
-        fbUsername : user.get('fbUsername'),
+        fbUsername : user.get('fb_username'),
         description: user.get('description'),
         education: user.get('education'),
         profession: user.get('profession'),
@@ -40,8 +40,8 @@ function SearchCtrl($scope, $routeParams) {
 
   $scope.searchUser = function() {
     var query = new Parse.Query(Parse.User);
-    query.select("name","description");
-    var queryResult = query.equalTo($scope.choices, $scope.query).find();
+    query.select("name","description", "fb_username");
+    var queryResult = query.contains($scope.choices, $scope.query).find();
     queryResult.then(function(results) {
       $scope.$apply(function(){
         $scope.users = [];
@@ -50,6 +50,7 @@ function SearchCtrl($scope, $routeParams) {
           $scope.users.push({
             id : object.id,
             description : object.get("description"),
+            fbUsername : object.get("fb_username"),
             name : object.get("name")
           });
         });

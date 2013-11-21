@@ -33,6 +33,7 @@ angular.module('dreamnetwork')
                    user.set('fb_url', response.link);
                    user.set('interests', response.interests);
                    user.set('description', response.about_me);
+                   user.set('fb_username', response.username);
 
                    user.save(null, {
                      success: function(data) {
