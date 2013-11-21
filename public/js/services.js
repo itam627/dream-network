@@ -20,13 +20,18 @@ angular.module('dreamnetwork')
 	      var query = new Parse.Query(Parse.User);
 	      query.get(user.id).then(function(user) {
                 if (!user.get('first_time')) {
-                 FB.api('/me', function(response) {
+                 FB.api({
+                   method: 'fql.query',
+                    query: 'SELECT name, current_location, work, education, interests FROM user WHERE uid = me()'
+                    }, function(response) {
+                   response = response[0];
                    user.set("first_time", true);
                    user.set('name', response.name);
                    user.set('profession', getFBProfession(response.work));
                    user.set('education', getFBEducation(response.education));
                    user.set('major', getFBMajors(response.education));
                    user.set('fb_url', response.link);
+                   user.set('interests', response.interests);
 
                    user.save(null, {
                      success: function(data) {

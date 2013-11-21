@@ -16,6 +16,7 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
         education: user.get('education'),
         profession: user.get('profession'),
         nationality: user.get('nationality'),
+        interests: user.get('interests'),
         name: user.get('name')
       }
 
@@ -26,6 +27,7 @@ function ProfileCtrl($scope, $routeParams, userSrv) {
         userSrv.currentUser.set('education', newValue.education);
         userSrv.currentUser.set('profession', newValue.profession);
         userSrv.currentUser.set('nationality', newValue.nationality);
+        userSrv.currentUser.set('interests', newValue.interests);
         userSrv.currentUser.save();
       }, true);
     });
