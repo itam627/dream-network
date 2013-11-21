@@ -100,3 +100,17 @@ body {
 .cancel-button {
   margin-left: 5px;
 }
+
+.navbar-nav>li>a {
+    padding-top: 24.5px;
+    padding-bottom: 16.5px;
+}
+
+.navbar-brand {
+    padding: 11.5px 15px;
+}
+
+.navbar .btn {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
